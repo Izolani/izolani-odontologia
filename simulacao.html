@@ -3,119 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simular Meu Sorriso</title>
+    <title>Simular Meu Sorriso - Orlando Izolani Odontologia</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 0;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 2rem;
             text-align: center;
         }
-        h1 {
-            color: #333;
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .upload-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
         .upload-container {
-            margin-top: 30px;
-            padding: 20px;
-            border: 2px dashed #007BFF;
+            border: 3px dashed #007BFF;
             border-radius: 10px;
-            background-color: #f9f9f9;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 2rem;
+            background: #f8f9fa;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
         }
+
+        .upload-container:hover {
+            border-color: #0056b3;
+            background: #e9ecef;
+        }
+
         .upload-container input[type="file"] {
-            margin-top: 10px;
+            margin: 1rem 0;
+            padding: 0.5rem;
         }
-        .upload-container button {
-            margin-top: 20px;
-            padding: 10px 20px;
+
+        .preview-section {
+            display: none;
+            margin: 2rem 0;
+        }
+
+        .image-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .image-container {
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #007BFF;
+        }
+
+        .image-container h3 {
+            margin: 0.5rem 0;
+            color: #007BFF;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
             background: #007BFF;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
-        .upload-container button:hover {
+
+        .btn-primary:hover {
             background: #0056b3;
         }
-        .preview-container {
-            margin-top: 20px;
-        }
-        .preview-container img {
-            max-width: 100%;
-            height: auto;
-            border: 2px solid #007BFF;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-        .processar-btn {
-            background-color: #28a745;
+
+        .btn-success {
+            background: #28a745;
             color: white;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
-        .processar-btn:hover {
-            background-color: #218838;
+
+        .btn-success:hover {
+            background: #218838;
+        }
+
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
+        .processing {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007BFF;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results-section {
+            display: none;
+            background: #e9f7ef;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .contact-info {
+            background: #007BFF;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .back-btn:hover {
+            background: #5a6268;
+        }
+
+        @media (max-width: 768px) {
+            .image-comparison {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Simular Meu Sorriso</h1>
-    <p>Escolha uma foto para começar sua simulação:</p>
-    
-    <div class="upload-container">
-        <h3>Faça o upload de uma imagem</h3>
-        <input type="file" id="upload-photo" accept="image/*" onchange="mostrarPreview()">
-        <div class="preview-container">
-            <p id="mensagem-preview"></p>
-            <img id="preview-imagem" alt="Preview da foto selecionada" style="display: none;">
+    <div class="container">
+        <div class="header">
+            <h1>🦷 Simulador de Sorriso</h1>
+            <p>Veja como seu sorriso pode ficar ainda mais bonito!</p>
         </div>
-        <button id="processar-btn" class="processar-btn" onclick="processarFoto()" style="display: none;">Simular Sorriso</button>
+
+        <div class="content">
+            <a href="index.html" class="back-btn">← Voltar ao Site</a>
+
+            <!-- Seção de Upload -->
+            <div class="upload-section" id="uploadSection">
+                <h2>📸 Envie sua foto</h2>
+                <p>Para uma melhor simulação, envie uma foto sorrindo de frente, com boa iluminação.</p>
+                
+                <div class="upload-container">
+                    <h3>Escolha uma foto do seu sorriso</h3>
+                    <input type="file" id="photoInput" accept="image/*" onchange="handleFileSelect()">
+                    <p>Formatos aceitos: JPG, PNG, JPEG</p>
+                </div>
+            </div>
+
+            <!-- Seção de Processamento -->
+            <div class="processing" id="processingSection">
+                <div class="spinner"></div>
+                <h3>🔄 Processando sua simulação...</h3>
+                <p>Analisando sua foto e aplicando melhorias estéticas...</p>
+                <p><small>Aguarde alguns segundos...</small></p>
+            </div>
+
+            <!-- Seção de Preview e Simulação -->
+            <div class="preview-section" id="previewSection">
+                <h2>📋 Sua Simulação</h2>
+                <div class="image-comparison">
+                    <div class="image-container">
+                        <h3>Foto Original</h3>
+                        <img id="originalImage" alt="Sua foto original">
+                    </div>
+                    <div class="image-container">
+                        <h3>Simulação do Resultado</h3>
+                        <img id="simulatedImage" alt="Simulação do resultado">
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 2rem 0;">
+                    <button class="btn btn-primary" onclick="processSimulation()">✨ Simular Sorriso</button>
+                </div>
+            </div>
+
+            <!-- Seção de Resultados -->
+            <div class="results-section" id="resultsSection">
+                <h2>🎉 Simulação Concluída!</h2>
+                <p><strong>Possíveis melhorias identificadas:</strong></p>
+                <ul>
+                    <li>✅ Clareamento dental para um sorriso mais brilhante</li>
+                    <li>✅ Alinhamento dental com ortodontia</li>
+                    <li>✅ Harmonização do sorriso com facetas ou lentes de contato</li>
+                    <li>✅ Proporção áurea para um sorriso mais harmônico</li>
+                </ul>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-success" onclick="scheduleConsultation()">📅 Agendar Consulta</button>
+                    <button class="btn btn-warning" onclick="downloadResult()">💾 Baixar Resultado</button>
+                    <button class="btn btn-primary" onclick="shareResult()">📱 Compartilhar</button>
+                </div>
+            </div>
+
+            <!-- Informações de Contato -->
+            <div class="contact-info">
+                <h3>📞 Gostou da simulação?</h3>
+                <p><strong>Entre em contato para agendar sua consulta:</strong></p>
+                <p>📱 WhatsApp: +55 21 2683-3440</p>
+                <p>✉️ E-mail: orlando.izolani@hotmail.com</p>
+                <p>📍 Rua Prefeito Délio Basílio Leal, 500 - Shopping Estação, sala 116</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Exibe o preview da imagem carregada
-        function mostrarPreview() {
-            const fileInput = document.getElementById('upload-photo');
-            const mensagemPreview = document.getElementById('mensagem-preview');
-            const previewImagem = document.getElementById('preview-imagem');
-            const processarBtn = document.getElementById('processar-btn');
+        let originalImageData = null;
 
-            const file = fileInput.files[0];
+        function handleFileSelect() {
+            const input = document.getElementById('photoInput');
+            const file = input.files[0];
+            
+            if (!file) return;
 
-            if (!file) {
-                mensagemPreview.innerText = "Nenhuma imagem selecionada.";
-                previewImagem.style.display = "none";
-                processarBtn.style.display = "none";
-                return;
-            }
-
-            // Valida se o arquivo é realmente uma imagem
             if (!file.type.startsWith('image/')) {
-                mensagemPreview.innerText = "Por favor, selecione um arquivo do tipo imagem.";
-                previewImagem.style.display = "none";
-                processarBtn.style.display = "none";
+                alert('Por favor, selecione apenas arquivos de imagem (JPG, PNG, JPEG).');
                 return;
             }
 
-            // Exibe o preview da imagem
             const reader = new FileReader();
-            reader.onload = function (e) {
-                previewImagem.src = e.target.result;
-                previewImagem.style.display = "block";
-                mensagemPreview.innerText = `Imagem: ${file.name}`;
-                processarBtn.style.display = "inline-block";
+            reader.onload = function(e) {
+                originalImageData = e.target.result;
+                document.getElementById('originalImage').src = originalImageData;
+                document.getElementById('simulatedImage').src = originalImageData;
+                
+                // Mostra a seção de preview
+                document.getElementById('previewSection').style.display = 'block';
+                
+                // Scroll suave para a seção de preview
+                document.getElementById('previewSection').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
             };
             reader.readAsDataURL(file);
         }
 
-        // Simula o processamento da foto
-        function processarFoto() {
-            alert("Simulação realizada com sucesso! Essa é apenas uma demonstração.");
+        function processSimulation() {
+            // Esconde preview e mostra processamento
+            document.getElementById('previewSection').style.display = 'none';
+            document.getElementById('processingSection').style.display = 'block';
+            
+            // Simula processamento por 3 segundos
+            setTimeout(() => {
+                // Aplica filtro de "melhoria" na imagem simulada
+                applySimulationFilter();
+                
+                // Esconde processamento e mostra resultados
+                document.getElementById('processingSection').style.display = 'none';
+                document.getElementById('previewSection').style.display = 'block';
+                document.getElementById('resultsSection').style.display = 'block';
+                
+                // Scroll para resultados
+                document.getElementById('resultsSection').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 3000);
+        }
+
+        function applySimulationFilter() {
+            // Cria um canvas para aplicar filtros básicos na imagem
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Desenha a imagem original
+                ctx.drawImage(img, 0, 0);
+                
+                // Aplica filtros básicos (brilho e contraste)
+                ctx.filter = 'brightness(1.1) contrast(1.1) saturate(1.2)';
+                ctx.drawImage(img, 0, 0);
+                
+                // Atualiza a imagem simulada
+                document.getElementById('simulatedImage').src = canvas.toDataURL();
+            };
+            
+            img.src = originalImageData;
+        }
+
+        function scheduleConsultation() {
+            const message = "Olá! Vi a simulação do meu sorriso no site e gostaria de agendar uma consulta com o Dr. Orlando Izolani.";
+            const whatsappUrl = `https://wa.me/5521268334400?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function downloadResult() {
+            const link = document.createElement('a');
+            link.download = 'simulacao-sorriso-izolani.png';
+            link.href = document.getElementById('simulatedImage').src;
+            link.click();
+        }
+
+        function shareResult() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Minha Simulação de Sorriso',
+                    text: 'Veja como meu sorriso pode ficar com o Dr. Orlando Izolani!',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback para navegadores que não suportam Web Share API
+                const url = window.location.href;
+                navigator.clipboard.writeText(url).then(() => {
+                    alert('Link copiado para a área de transferência!');
+                });
+            }
         }
     </script>
 </body>
