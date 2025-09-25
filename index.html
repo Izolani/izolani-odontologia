@@ -3,69 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simular Meu Sorriso</title>
+    <title>Orlando Izolani Odontologia</title>
     <style>
+        /* CSS básico */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
             padding: 0;
-            text-align: center;
         }
-        h1 {
-            color: #333;
-        }
-        .upload-container {
-            margin-top: 30px;
-            padding: 20px;
-            border: 2px dashed #007BFF;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .upload-container input[type="file"] {
-            margin-top: 10px;
-        }
-        .upload-container button {
-            margin-top: 20px;
-            padding: 10px 20px;
+        header {
             background: #007BFF;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            padding: 20px;
+            text-align: center;
         }
-        .upload-container button:hover {
-            background: #0056b3;
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+        }
+        #simular-sorriso {
+            margin: 40px auto;
+            text-align: center;
+        }
+        .btn-simular {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .btn-simular:hover {
+            background: #218838;
         }
     </style>
 </head>
 <body>
-    <h1>Simular Meu Sorriso</h1>
-    <p>Faça o upload de uma foto para simular o seu sorriso perfeito!</p>
+    <header>
+        <h1>Orlando Izolani Odontologia</h1>
+        <p>Transformando sorrisinhos por um mundo mais confiante!</p>
+    </header>
 
-    <div class="upload-container">
-        <h3>Escolha uma foto</h3>
-        <input type="file" id="upload-photo" accept="image/*">
-        <br>
-        <button onclick="simular()">Enviar Foto</button>
-    </div>
+    <main>
+        <section class="about-image">
+            <img src="imagens/dr-orlando.jpg" alt="Dr. Orlando Izolani">
+        </section>
 
-    <script>
-        // Lógica do botão de upload
-        function simular() {
-            const fileInput = document.getElementById('upload-photo');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert("Por favor, selecione uma foto para continuar!");
-                return;
-            }
-
-            // Simulação de processamento
-            alert(`Foto "${file.name}" enviada com sucesso! Em breve será processada.`);
-        }
-    </script>
+        <!-- Botão do Simular Meu Sorriso -->
+        <section id="simular-sorriso">
+            <h2>Quer Simular o Seu Sorriso?</h2>
+            <a href="simulacao.html" class="btn-simular">Simular Meu Sorriso</a>
+        </section>
+    </main>
 </body>
 </html>
