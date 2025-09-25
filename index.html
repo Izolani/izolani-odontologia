@@ -148,11 +148,29 @@
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,123,255,0.15);
         }
 
         .service-card h3 {
             color: #007BFF;
             margin-bottom: 1rem;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            fill: #007BFF;
+            transition: fill 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            fill: #0056b3;
         }
 
         .contact-info {
@@ -247,26 +265,92 @@
             <h2>Procedimentos</h2>
             <div class="services-grid">
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M30 40 Q50 25 70 40 Q50 55 30 40" fill="currentColor"/>
+                        <circle cx="40" cy="45" r="3" fill="white"/>
+                        <circle cx="60" cy="45" r="3" fill="white"/>
+                        <path d="M35 60 Q50 75 65 60" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <rect x="20" y="70" width="60" height="8" rx="4" fill="currentColor"/>
+                    </svg>
                     <h3>Reabilitação Oral</h3>
                     <p>Restauração completa da função e estética bucal com técnicas avançadas e materiais de alta qualidade.</p>
                 </div>
+                
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M30 45 Q50 30 70 45" fill="currentColor"/>
+                        <circle cx="35" cy="48" r="2" fill="white"/>
+                        <circle cx="45" cy="46" r="2" fill="white"/>
+                        <circle cx="55" cy="46" r="2" fill="white"/>
+                        <circle cx="65" cy="48" r="2" fill="white"/>
+                        <path d="M30 55 Q50 70 70 55" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M25 25 L35 35 M75 25 L65 35" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
                     <h3>Estética Dental</h3>
                     <p>Tratamentos estéticos para harmonização do sorriso e melhoria da autoestima.</p>
                 </div>
+
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <rect x="45" y="20" width="10" height="30" fill="currentColor"/>
+                        <circle cx="50" cy="55" r="8" fill="currentColor"/>
+                        <path d="M42 55 L58 55 L55 70 L45 70 Z" fill="currentColor"/>
+                        <circle cx="50" cy="75" r="12" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <path d="M40 75 Q50 65 60 75" fill="currentColor"/>
+                        <circle cx="45" cy="78" r="1.5" fill="white"/>
+                        <circle cx="55" cy="78" r="1.5" fill="white"/>
+                    </svg>
                     <h3>Implante Dentário</h3>
                     <p>Reposição de dentes perdidos com implantes de alta qualidade e tecnologia avançada.</p>
                 </div>
+
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <path d="M20 50 Q50 30 80 50 Q50 70 20 50" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <rect x="25" y="45" width="6" height="10" fill="currentColor"/>
+                        <rect x="35" y="42" width="6" height="16" fill="currentColor"/>
+                        <rect x="45" y="40" width="6" height="20" fill="currentColor"/>
+                        <rect x="55" y="42" width="6" height="16" fill="currentColor"/>
+                        <rect x="65" y="45" width="6" height="10" fill="currentColor"/>
+                        <path d="M15 35 Q50 15 85 35" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M15 65 Q50 85 85 65" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
                     <h3>Ortodontia</h3>
                     <p>Aparelhos fixos e móveis para alinhamento dental e correção da mordida.</p>
                 </div>
+
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <path d="M20 60 Q50 40 80 60" fill="currentColor"/>
+                        <rect x="25" y="55" width="8" height="15" fill="white"/>
+                        <rect x="38" y="50" width="8" height="20" fill="white"/>
+                        <rect x="51" y="50" width="8" height="20" fill="white"/>
+                        <rect x="64" y="55" width="8" height="15" fill="white"/>
+                        <path d="M20 60 Q50 80 80 60" fill="none" stroke="currentColor" stroke-width="3"/>
+                        <circle cx="30" cy="40" r="3" fill="currentColor"/>
+                        <circle cx="70" cy="40" r="3" fill="currentColor"/>
+                        <path d="M25 35 Q50 25 75 35" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
                     <h3>Periodontia</h3>
                     <p>Tratamento das gengivas e estruturas de suporte dos dentes para manter a saúde bucal.</p>
                 </div>
+
                 <div class="service-card">
+                    <svg class="service-icon" viewBox="0 0 100 100">
+                        <path d="M25 50 Q50 30 75 50 Q50 70 25 50" fill="currentColor"/>
+                        <rect x="30" y="45" width="6" height="10" fill="white"/>
+                        <rect x="40" y="42" width="6" height="16" fill="white"/>
+                        <rect x="50" y="40" width="6" height="20" fill="white"/>
+                        <rect x="60" y="42" width="6" height="16" fill="white"/>
+                        <path d="M20 20 L30 30 M35 15 L45 25 M50 10 L60 20 M65 15 L75 25 M80 20 L90 30" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <circle cx="25" cy="25" r="2" fill="currentColor"/>
+                        <circle cx="40" cy="20" r="2" fill="currentColor"/>
+                        <circle cx="55" cy="15" r="2" fill="currentColor"/>
+                        <circle cx="70" cy="20" r="2" fill="currentColor"/>
+                        <circle cx="85" cy="25" r="2" fill="currentColor"/>
+                    </svg>
                     <h3>Clareamento Dental</h3>
                     <p>Clareamento profissional para um sorriso mais branco e radiante, com técnicas seguras e eficazes.</p>
                 </div>
